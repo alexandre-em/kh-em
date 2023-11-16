@@ -1,13 +1,10 @@
-import React from "react";
-import Navbar from "@/components/Navbar";
+import React from 'react';
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+import Navbar from '@/components/Navbar';
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <main style={{ fontFamily: "roboto", height: "100%", overflowX: "hidden" }}>
+    <main style={{ fontFamily: 'roboto', height: '100%', overflowX: 'hidden' }}>
       <Navbar />
       <div className="h-full m-3">{children}</div>
     </main>

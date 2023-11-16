@@ -1,6 +1,5 @@
-import { initializeApp, getApps } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getStorage } from "firebase/storage";
+import { getApps, initializeApp } from 'firebase/app';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,8 +12,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const firebase_app =
-  getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+const firebase_app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
 // export const analytics = getAnalytics(firebase_app);
 export const storage = getStorage(firebase_app);

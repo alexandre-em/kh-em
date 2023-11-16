@@ -1,7 +1,6 @@
-import Link from "next/link";
-import ChevronLeft from "@mui/icons-material/ChevronLeft";
-import { ChevronRight } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+import { ChevronLeft, ChevronRight } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -17,35 +16,26 @@ export default function Home() {
         />
         <div className="flex flex-col min-w-fit bg-white p-3 w-1/4 shadow-md mb-5">
           <b className="text-lg font-extrabold">Khindelvert Em</b>
-          <i className="opacity-75 text-sm font-light mb-2">
-            Femme girafe, 2009
-          </i>
-          <Link
-            href="/"
-            className="duration-200 font-medium text-zinc-950 hover:text-zinc-500"
-            style={{ fontFamily: "roboto" }}
-          >
+          <i className="opacity-75 text-sm font-light mb-2">Femme girafe, 2009</i>
+          <Link href="/" className="duration-200 font-medium text-zinc-950 hover:text-zinc-500" style={{ fontFamily: 'roboto' }}>
             Home
           </Link>
           <Link
             href="/gallery"
             className="duration-200 font-medium text-zinc-950 hover:text-zinc-500"
-            style={{ fontFamily: "roboto" }}
-          >
+            style={{ fontFamily: 'roboto' }}>
             Gallery
           </Link>
           <Link
             href="/profile"
             className="duration-200 font-medium text-zinc-950 hover:text-zinc-500"
-            style={{ fontFamily: "roboto" }}
-          >
+            style={{ fontFamily: 'roboto' }}>
             Profile
           </Link>
           <Link
             href="/contact"
             className="duration-200 font-medium text-zinc-950 hover:text-zinc-500"
-            style={{ fontFamily: "roboto" }}
-          >
+            style={{ fontFamily: 'roboto' }}>
             Contact
           </Link>
 

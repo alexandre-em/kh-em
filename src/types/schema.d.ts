@@ -1,4 +1,4 @@
-type StatusType = "pending" | "cancelled" | "done";
+type StatusType = 'pending' | 'cancelled' | 'done';
 
 type Comment = {
   id: string;
@@ -46,3 +46,5 @@ type EventType = {
   description?: string;
   link?: string;
 };
+
+type DataPayload = Record<string, string | number | Date | Comment | StatusType | PaintType[]>;

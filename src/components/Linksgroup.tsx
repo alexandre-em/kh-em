@@ -1,6 +1,6 @@
-import { Facebook, Instagram, LinkedIn, Mail } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
-import React from "react";
+import { Facebook, Instagram, LinkedIn, Mail } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
+import React from 'react';
 
 export default function Linksgroup({ title = true }: { title?: boolean }) {
   return (
