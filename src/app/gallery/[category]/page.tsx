@@ -3,15 +3,16 @@ import { Home } from '@mui/icons-material';
 import { Breadcrumbs, IconButton, ImageList, ImageListItem, Skeleton } from '@mui/material';
 import { DocumentData } from 'firebase/firestore';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { getDocumentByField } from '@/utils/firebase';
 
 import { categoryList } from '../constants';
 
 export default function Category({ params }: { params: { category: string } }) {
-  const [images, setImages] = React.useState<DocumentData[]>([]);
-  React.useEffect(() => {
+  const [images, setImages] = useState<DocumentData[]>([]);
+
+  useEffect(() => {
     if (params !== null && params !== undefined) {
       getDocumentByField('paints', 'category', params.category).then((res) => {
         if (res.result) {

@@ -8,10 +8,7 @@ type CartItemType = { item: PaintType; quantity: number };
 type PayloadType = CartItemType;
 
 export type StoreValueType = {
-  cart: {
-    item: PaintType;
-    quantity: number;
-  }[];
+  cart: CartItemType[];
   dispatch: (key: StoreDispatchType, payload: PayloadType) => void;
 };
 

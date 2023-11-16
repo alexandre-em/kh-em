@@ -1,23 +1,14 @@
-"use client";
-import { addDataToDb, uploadFile } from "@/utils/firebase";
-import {
-  Alert,
-  Button,
-  CircularProgress,
-  FormControl,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-} from "@mui/material";
-import React, { useCallback } from "react";
+'use client';
+import { Alert, Button, CircularProgress, FormControl, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
+import React, { useCallback, useState } from 'react';
+
+import { addDataToDb, uploadFile } from '@/utils/firebase';
 
 export default function Dashboard() {
-  const [formValue, setFormValue] = React.useState<Record<string, string>>();
-  const [image, setImage] = React.useState<File | null>();
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [isUploadSuccess, setIsUploadSuccess] = React.useState<
-    "success" | "error" | undefined
-  >();
+  const [formValue, setFormValue] = useState<Record<string, string | number>>();
+  const [image, setImage] = useState<File | null>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isUploadSuccess, setIsUploadSuccess] = useState<'success' | 'error' | undefined>();
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,36 +19,33 @@ export default function Dashboard() {
         const resUploadImage = await uploadFile(image.name, buffer);
 
         if (!resUploadImage.error) {
-          const res = await addDataToDb("paints", {
+          const res = await addDataToDb('paints', {
             ...formValue,
             url: resUploadImage.result,
           });
 
-          console.log("res data", res);
+          console.log('res data', res);
           setIsLoading(false);
           if (!res.error) {
-            setIsUploadSuccess("success");
+            setIsUploadSuccess('success');
           } else {
-            setIsUploadSuccess("error");
+            setIsUploadSuccess('error');
           }
         } else {
-          setIsUploadSuccess("error");
+          setIsUploadSuccess('error');
         }
       }
     },
     [formValue, image, isLoading]
   );
 
-  const handleChange = useCallback((key: string, value: any) => {
+  const handleChange = useCallback((key: string, value: string | number) => {
     setFormValue((prev) => ({ ...prev, [key]: value }));
   }, []);
 
   return (
     <div className="bg-gray-800 h-full flex justify-center items-center">
-      <form
-        className="bg-white flex flex-col p-5 rounded-xl"
-        onSubmit={handleSubmit}
-      >
+      <form className="bg-white flex flex-col p-5 rounded-xl" onSubmit={handleSubmit}>
         <FormControl>
           <InputLabel>Title</InputLabel>
 
@@ -65,7 +53,7 @@ export default function Dashboard() {
             required
             label="title"
             value={formValue?.title}
-            onChange={(e) => handleChange("title", e.target.value)}
+            onChange={(e) => handleChange('title', e.target.value)}
           />
         </FormControl>
         <FormControl className="bg-white p-5 rounded-xl">
@@ -75,7 +63,7 @@ export default function Dashboard() {
             label="year"
             value={formValue?.year}
             type="number"
-            onChange={(e) => handleChange("year", parseInt(e.target.value))}
+            onChange={(e) => handleChange('year', parseInt(e.target.value))}
           />
         </FormControl>
         <FormControl className="bg-white p-5 rounded-xl">
@@ -84,7 +72,7 @@ export default function Dashboard() {
             required
             label="category"
             value={formValue?.category}
-            onChange={(e) => handleChange("category", e.target.value)}
+            onChange={(e) => handleChange('category', e.target.value)}
           />
         </FormControl>
         <FormControl className="bg-white p-5 rounded-xl">
@@ -95,7 +83,7 @@ export default function Dashboard() {
             endAdornment={<InputAdornment position="end">cm</InputAdornment>}
             value={formValue?.width}
             type="number"
-            onChange={(e) => handleChange("width", parseInt(e.target.value))}
+            onChange={(e) => handleChange('width', parseInt(e.target.value))}
           />
         </FormControl>
         <FormControl className="bg-white p-5 rounded-xl">
@@ -106,7 +94,7 @@ export default function Dashboard() {
             endAdornment={<InputAdornment position="end">cm</InputAdornment>}
             value={formValue?.height}
             type="number"
-            onChange={(e) => handleChange("height", parseInt(e.target.value))}
+            onChange={(e) => handleChange('height', parseInt(e.target.value))}
           />
         </FormControl>
         <FormControl className="bg-white p-5 rounded-xl">
@@ -116,7 +104,7 @@ export default function Dashboard() {
             endAdornment={<InputAdornment position="end">€</InputAdornment>}
             value={formValue?.price}
             type="number"
-            onChange={(e) => handleChange("price", parseInt(e.target.value))}
+            onChange={(e) => handleChange('price', parseInt(e.target.value))}
           />
         </FormControl>
         <FormControl className="bg-white p-5 rounded-xl">
@@ -126,24 +114,17 @@ export default function Dashboard() {
             label="stock"
             value={formValue?.stock}
             type="number"
-            onChange={(e) => handleChange("stock", parseInt(e.target.value))}
+            onChange={(e) => handleChange('stock', parseInt(e.target.value))}
           />
         </FormControl>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setImage(e.target.files[0])}
-          className="m-5"
-        />
+        <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files![0])} className="m-5" />
         <Button type="submit" variant="outlined" disabled={isLoading}>
           Submit
           {isLoading && <CircularProgress className="ml-2" size={20} />}
         </Button>
         {isUploadSuccess && (
           <Alert className="mt-5" severity={isUploadSuccess}>
-            {isUploadSuccess === "success"
-              ? "Upload Succeed !"
-              : "Error in uploading"}
+            {isUploadSuccess === 'success' ? 'Upload Succeed !' : 'Error in uploading'}
           </Alert>
         )}
       </form>

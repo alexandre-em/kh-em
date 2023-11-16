@@ -1,32 +1,31 @@
-"use client";
-import React, { useCallback, useMemo } from "react";
-import { Button, Divider, TextField } from "@mui/material";
+'use client';
+import { Button, Divider, TextField } from '@mui/material';
+import Image from 'next/image';
+import React, { useCallback, useMemo } from 'react';
 
-import Navbar from "@/components/Navbar";
-import { useStore } from "@/providers/useStore";
-import EmptyCart from "./empty_cart.svg";
-import Image from "next/image";
-import Linksgroup from "@/components/Linksgroup";
+import Linksgroup from '@/components/Linksgroup';
+import Navbar from '@/components/Navbar';
+import { useStore } from '@/providers/useStore';
+
+import EmptyCart from './empty_cart.svg';
 
 export default function Cart() {
   const storeContext = useStore();
 
   const updateQuantity = useCallback(
-    (id: string, quantity: number) => {
+    (item: PaintType, quantity: number) => {
       if (storeContext) {
-        if (
-          quantity > 0 &&
-          quantity <= storeContext.cart.find(({ item }) => item.id)!.item.stock
-        ) {
+        if (quantity > 0 && quantity <= storeContext.cart.find(({ item }) => item.id)!.item.stock) {
           // Checking if the quantity asked is available
-          storeContext.dispatch("UPDATE_ITEM_CART_QUANTITY", {
-            item: { id },
+          storeContext.dispatch('UPDATE_ITEM_CART_QUANTITY', {
+            item,
             quantity,
           });
         } else if (quantity === 0)
           // quantity = 0 so we remove the product
-          storeContext.dispatch("REMOVE_ITEM_CART", {
-            item: { id },
+          storeContext.dispatch('REMOVE_ITEM_CART', {
+            item,
+            quantity: 0,
           });
       }
     },
@@ -38,9 +37,7 @@ export default function Cart() {
   const totalPrice = useMemo(
     () =>
       storeContext?.cart.length
-        ? storeContext?.cart
-            .map((v) => v.item.price * v.quantity)
-            .reduce((prev, curr) => prev + curr, 0)
+        ? storeContext?.cart.map((v) => v.item.price * v.quantity).reduce((prev, curr) => prev + curr, 0)
         : 0,
     [storeContext]
   );
@@ -54,16 +51,9 @@ export default function Cart() {
             <h1>Your cart is &nbsp;</h1>
             <h1 className="text-[#536DFE]">empty</h1>
           </div>
-          <i className="text-gray-500 font-thin">
-            If you have any questions, don't hesitate to contact me !
-          </i>
+          <i className="text-gray-500 font-thin">If you have any questions, don't hesitate to contact me !</i>
           <Linksgroup title={false} />
-          <Image
-            priority
-            src={EmptyCart}
-            alt="img"
-            className="w-8/12 max-w-sm min-w-[200px] mt-10"
-          />
+          <Image priority src={EmptyCart} alt="img" className="w-8/12 max-w-sm min-w-[200px] mt-10" />
         </div>
       </div>
     );
@@ -80,10 +70,7 @@ export default function Cart() {
           {storeContext.cart.length > 0 &&
             storeContext?.cart.map((item, i) => (
               <>
-                <div
-                  key={item.item.id}
-                  className="flex flex-wrap justify-between items-center"
-                >
+                <div key={item.item.id} className="flex flex-wrap justify-between items-center">
                   <div className="flex flex-row h-full items-center">
                     <TextField
                       label="Quantity"
@@ -91,17 +78,8 @@ export default function Cart() {
                       InputLabelProps={{
                         shrink: true,
                       }}
-                      value={
-                        storeContext.cart.find(
-                          (prod) => prod.item.id === item.item.id
-                        )!.quantity
-                      }
-                      onChange={(e) =>
-                        updateQuantity(
-                          item.item.id,
-                          parseInt(e.target.value as string)
-                        )
-                      }
+                      value={storeContext.cart.find((prod) => prod.item.id === item.item.id)!.quantity}
+                      onChange={(e) => updateQuantity(item.item, parseInt(e.target.value as string))}
                       className="w-[40px]"
                       variant="standard"
                     />
@@ -109,9 +87,7 @@ export default function Cart() {
                   </div>
                   <b className="text-sm">{item.item.price * item.quantity}€</b>
                 </div>
-                {i + 1 < storeContext.cart.length && (
-                  <Divider className="mt-1 mb-1" />
-                )}
+                {i + 1 < storeContext.cart.length && <Divider className="mt-1 mb-1" />}
               </>
             ))}
         </div>

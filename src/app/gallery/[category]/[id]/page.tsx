@@ -10,7 +10,7 @@ import { getDocument } from '@/utils/firebase';
 import { categoryList } from '../../constants';
 
 export default function PaintDetail({ params }: { params: { id: string } }) {
-  const [image, setImage] = useState<Record<string, string>>();
+  const [image, setImage] = useState<PaintType>();
   const storeContext = useStore();
 
   const isProductInBasket = useMemo(
@@ -20,13 +20,12 @@ export default function PaintDetail({ params }: { params: { id: string } }) {
   const handleUpdateBasket = useCallback(() => {
     if (image) {
       if (!isProductInBasket) {
-        console.log('Adding product in basket', image);
         storeContext!.dispatch('ADD_ITEM_CART', { item: image, quantity: 1 });
       } else {
         if (storeContext && image) {
-          console.log('Removing product from basket');
           storeContext!.dispatch('REMOVE_ITEM_CART', {
             item: image,
+            quantity: 0,
           });
         }
       }
@@ -40,7 +39,7 @@ export default function PaintDetail({ params }: { params: { id: string } }) {
           setImage({
             ...res.result.data(),
             id: params.id,
-          });
+          } as PaintType);
         }
       });
     }
