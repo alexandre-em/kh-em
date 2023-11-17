@@ -65,25 +65,37 @@ export default function PaintDetail({ params }: { params: { id: string } }) {
           {image.title}
         </Link>
       </Breadcrumbs>
-      <div className="flex flex-wrap sm:justify-between justify-center bg-white rounded-xl">
-        <img alt="image" src={image.url} className="w-8/12 h-fit max-w-xl min-w-[300px] sm:rounded-xl rounded-none" />
-        <div className="p-2 flex flex-col justify-between w-full sm:w-fit">
-          <div className="">
-            <h1 className="font-extrabold text-2xl">{image.title}</h1>
-            <b>{image.year}</b>
-            <p className="mb-5">
-              Dimensions: {image.width} × {image.height} cm
-            </p>
-            <b>Price: {image.price}€</b>
-            <p>Available quantity: {image.stock}</p>
-          </div>
-          <div className="flex justify-between">
-            <IconButton>
-              <Comment />
-            </IconButton>
-            <Button variant="outlined" onClick={handleUpdateBasket}>
-              Add basket
-            </Button>
+      <div className="flex justify-center">
+        <div className="flex flex-wrap sm:justify-between justify-center bg-white rounded-xl max-w-4xl">
+          <img alt="image" src={image.url} className="w-8/12 h-fit max-w-xl min-w-[300px] sm:rounded-xl rounded-none" />
+          <div className="p-2 flex flex-col justify-between w-full sm:w-fit">
+            <div className="">
+              <h1 className="font-extrabold text-2xl">{image.title}</h1>
+              <b>{image.year}</b>
+              <p className="mb-5">
+                Dimensions: {image.width} × {image.height} cm
+              </p>
+              <b>Price: {image.price}€</b>
+              {image.stock > 0 ? (
+                <p>Available quantity: {image.stock}</p>
+              ) : (
+                <p className={'text-xl font-extrabold text-red-500'}>SOLD OUT</p>
+              )}
+            </div>
+            <div className="flex justify-between">
+              <IconButton>
+                <Comment />
+              </IconButton>
+              {storeContext?.cart.find((item) => item.item.id === image.id) ? (
+                <Button variant="outlined" color="error" onClick={handleUpdateBasket} disabled={image.stock <= 0}>
+                  Remove item
+                </Button>
+              ) : (
+                <Button variant="contained" className="bg-[#2196f3]" onClick={handleUpdateBasket} disabled={image.stock <= 0}>
+                  Add item
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </div>
