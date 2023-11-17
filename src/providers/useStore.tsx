@@ -1,17 +1,6 @@
 'use client';
 import React, { createContext, useCallback, useContext, useState } from 'react';
 
-type CartDispatchType = 'ADD_ITEM_CART' | 'REMOVE_ITEM_CART' | 'UPDATE_ITEM_CART_QUANTITY';
-export type StoreDispatchType = CartDispatchType;
-
-type CartItemType = { item: PaintType; quantity: number };
-type PayloadType = CartItemType;
-
-export type StoreValueType = {
-  cart: CartItemType[];
-  dispatch: (key: StoreDispatchType, payload: PayloadType) => void;
-};
-
 const StoreContext = createContext<StoreValueType | null>(null);
 
 // This hook can be used to access the user info.

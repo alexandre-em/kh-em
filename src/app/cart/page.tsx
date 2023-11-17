@@ -1,11 +1,14 @@
 'use client';
 import { Button, Divider, TextField } from '@mui/material';
+import axios from 'axios';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useCallback, useMemo } from 'react';
 
 import Linksgroup from '@/components/Linksgroup';
 import Navbar from '@/components/Navbar';
 import { useStore } from '@/providers/useStore';
+import getStripe from '@/utils/stripe';
 
 import EmptyCart from './empty_cart.svg';
 
@@ -32,7 +35,27 @@ export default function Cart() {
     [storeContext]
   );
 
-  console.log(storeContext);
+  const handleCheckout = useCallback(async () => {
+    try {
+      const stripe = await getStripe();
+
+      if (!stripe) throw new Error('Stripe failed to initialize.');
+
+      const session = await axios.post(
+        '/api/checkout-sessions',
+        { cart: storeContext!.cart },
+        { headers: { 'Content-Type': 'application/json' } }
+      );
+      console.log('session post', session);
+      const stripeError = stripe?.redirectToCheckout({ sessionId: session.data.sessionId });
+
+      if (stripeError) {
+        console.error(stripeError);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }, [storeContext?.cart]);
 
   const totalPrice = useMemo(
     () =>
@@ -70,7 +93,7 @@ export default function Cart() {
           {storeContext.cart.length > 0 &&
             storeContext?.cart.map((item, i) => (
               <>
-                <div key={item.item.id} className="flex flex-wrap justify-between items-center">
+                <div key={item.item.id} className="flex flex-wrap justify-between items-center hover:bg-gray-50 duration-300">
                   <div className="flex flex-row h-full items-center">
                     <TextField
                       label="Quantity"
@@ -83,7 +106,9 @@ export default function Cart() {
                       className="w-[40px]"
                       variant="standard"
                     />
-                    <div className="italic ml-3 text-sm">{item.item.title}</div>
+                    <Link href={`/gallery/${item.item.category}/${item.item.id}`} className="italic ml-3 text-sm">
+                      {item.item.title}
+                    </Link>
                   </div>
                   <b className="text-sm">{item.item.price * item.quantity}€</b>
                 </div>
@@ -108,7 +133,7 @@ export default function Cart() {
             <h1 className="text-sm font-bold">Total TTC</h1>
             <h1 className="text-sm font-bold">{totalPrice}€</h1>
           </div>
-          <Button variant="contained" className="bg-[#2196f3] mt-3">
+          <Button variant="contained" className="bg-[#2196f3] mt-3" onClick={handleCheckout}>
             Checkout
           </Button>
         </div>
