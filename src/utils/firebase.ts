@@ -1,4 +1,15 @@
-import { collection as collectionRef, doc, getDoc, getDocs, getFirestore, query, setDoc, where } from 'firebase/firestore';
+import {
+  collection as collectionRef,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  increment,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 import { ref, uploadBytes } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -24,6 +35,50 @@ export async function addDataToDb(
 
     result = await setDoc(doc(db, collection, id), data, {
       merge: true,
+    });
+  } catch (e) {
+    error = e;
+  }
+
+  return { result, error };
+}
+
+/**
+ * @param collection {string} path/name of the collection
+ * @param id {string} id of the new row
+ * @param data {any}
+ * @example const { result, error } = await addData('users', 'user-id', data)
+ */
+export async function updateItemData(
+  collection: string,
+  id: string,
+  data: Record<string, string | number | Date | Comment | StatusType | PaintType[]>
+) {
+  let result = null;
+  let error = null;
+
+  try {
+    result = await updateDoc(doc(db, collection, id), data);
+  } catch (e) {
+    error = e;
+  }
+
+  return { result, error };
+}
+
+/**
+ * @param collection {string} path/name of the collection
+ * @param id {string} id of the new row
+ * @param data {any}
+ * @example const { result, error } = await addData('users', 'user-id', data)
+ */
+export async function incrementStock(collection: string, id: string, quantity: number) {
+  let result = null;
+  let error = null;
+
+  try {
+    result = await updateDoc(doc(db, collection, id), {
+      stock: increment(-1 * quantity),
     });
   } catch (e) {
     error = e;
