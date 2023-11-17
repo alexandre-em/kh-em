@@ -4,7 +4,7 @@ import React from 'react';
 
 import { categoryList } from './constants';
 
-export function CategoryPreview({ category }: { category: (typeof categoryList)[0] }) {
+function CategoryPreview({ category }: { category: (typeof categoryList)[0] }) {
   return (
     <div className="self-center mb-2">
       <div className="flex justify-between">

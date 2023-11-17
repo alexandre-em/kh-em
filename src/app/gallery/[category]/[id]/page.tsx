@@ -45,8 +45,6 @@ export default function PaintDetail({ params }: { params: { id: string } }) {
     }
   }, [params.id]);
 
-  console.log(storeContext);
-
   if (!image) return null;
 
   return (

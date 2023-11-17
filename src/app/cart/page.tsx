@@ -70,11 +70,11 @@ export default function Cart() {
       <div>
         <Navbar />
         <div className="m-5 flex flex-col items-center">
-          <div className="font-black text-3xl flex">
+          <div className="font-black text-3xl flex flex-wrap">
             <h1>Your cart is &nbsp;</h1>
             <h1 className="text-[#536DFE]">empty</h1>
           </div>
-          <i className="text-gray-500 font-thin">If you have any questions, don't hesitate to contact me !</i>
+          <i className="text-gray-500 font-thin">If you have any questions, don&apos;t hesitate to contact me !</i>
           <Linksgroup title={false} />
           <Image priority src={EmptyCart} alt="img" className="w-8/12 max-w-sm min-w-[200px] mt-10" />
         </div>

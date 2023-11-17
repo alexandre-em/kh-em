@@ -90,23 +90,24 @@ export default function Profile() {
           <i className="opacity-75 text-sm font-light mb-2">Artiste peintre-lithographe</i>
           <p className="text-justify mb-2 opacity-90">
             M. EM Khindelvert, peintre et lithographe Né au Cambodge en 1956, Em Khindelvert vit en France depuis 1973 de ce fait
-            il se considère comme français d'origine cambodgienne.
+            il se considère comme français d&apos;origine cambodgienne.
             <br />
             <br />
-            Il peint depuis l'âge de 14 ans, il est naturellement porté à s'exprimer à travers l'image. Ainsi, quand il arrive en
-            France, à l'âge de 17ans, il continue à être à l'écoute de ses dispositions et traduit, sur du papier ou toile, ses
-            divers états d'âme et ses impressions. C'est pour lui l'occasion de rencontrer nombre artistes renommés, qui lui font
-            connaître toutes sortes de techniques et de styles. Les techniques d'impression le forment à devenir particulièrement
-            habile et précis. Quel que soit le domaine abordé, il essaie de faire de son mieux, en étant le plus efficace
-            possible. Aussi, il prend le temps nécessaire pour réaliser les choses qui doivent être faite, il analyse chaque
-            élément d'une situation complexe, il observe et médite, réfléchit sur les différentes possibilités de procéder avant
-            de prendre une décision.
+            Il peint depuis l&apos;âge de 14 ans, il est naturellement porté à s&apos;exprimer à travers l&apos;image. Ainsi,
+            quand il arrive en France, à l&apos;âge de 17ans, il continue à être à l&apos;écoute de ses dispositions et traduit,
+            sur du papier ou toile, ses divers états d&apos;âme et ses impressions. C&apos;est pour lui l&apos;occasion de
+            rencontrer nombre artistes renommés, qui lui font connaître toutes sortes de techniques et de styles. Les techniques
+            d&apos;impression le forment à devenir particulièrement habile et précis. Quel que soit le domaine abordé, il essaie
+            de faire de son mieux, en étant le plus efficace possible. Aussi, il prend le temps nécessaire pour réaliser les
+            choses qui doivent être faite, il analyse chaque élément d&apos;une situation complexe, il observe et médite,
+            réfléchit sur les différentes possibilités de procéder avant de prendre une décision.
             <br />
             <br />
-            Em est un homme de réflexion mais également d'une sensibilité nourrie par une imagination fertile. L'image de son
-            travail artistique est un mélange de culture française et de culture khmère dans ses compositions apparaissent des
-            plantes, les animaux et des êtres pleins de vie et de fraîcheur. On y retrouve toujours l'harmonie et le bonheur de
-            créer une équilibre entre le passé et sa vie présente et laisse une large place au rêve et à l'imaginaire.
+            Em est un homme de réflexion mais également d&apos;une sensibilité nourrie par une imagination fertile. L&apos;image
+            de son travail artistique est un mélange de culture française et de culture khmère dans ses compositions apparaissent
+            des plantes, les animaux et des êtres pleins de vie et de fraîcheur. On y retrouve toujours l&apos;harmonie et le
+            bonheur de créer une équilibre entre le passé et sa vie présente et laisse une large place au rêve et à
+            l&apos;imaginaire.
             <br />
             <br />
             Les traditions anciennes sont mêlées à sa manière de voir les objets, les êtres et leurs interrelations; une vision
@@ -114,13 +115,13 @@ export default function Profile() {
             forcement être insistant ni didactique. Honnête envers lui-même, ouvert à tout ce que la vie peut lui offrir, il est
             très changeant dans son expression artistique, qui séduit le regard par un usage étonnant de la couleur. Ses thèmes
             préfères sont la représentation de la femme et sa féminité. Par une association de couleurs qui lui est propre, il met
-            en valeur la beauté du corps féminin. Em n'oublie jamais de s'attacher à un détail, de souligner l'importance de ce
-            qui peut paraître secondaire dans ses peintures qui fleurissent telles que des fleurs exotiques ou s'élèvent telles
-            des flammes. Il sait le pouvoir de la nature et veut représenter sur des arrière-plans comiques naturellement
-            puissants, la délicatesse dont sont capables les hommes, et du fragile.
+            en valeur la beauté du corps féminin. Em n&apos;oublie jamais de s&apos;attacher à un détail, de souligner
+            l&apos;importance de ce qui peut paraître secondaire dans ses peintures qui fleurissent telles que des fleurs
+            exotiques ou s&apos;élèvent telles des flammes. Il sait le pouvoir de la nature et veut représenter sur des
+            arrière-plans comiques naturellement puissants, la délicatesse dont sont capables les hommes, et du fragile.
           </p>
           <Button href="https://payload.cargocollective.com/1/19/621815/10023275/chaos_889.jpg">
-            Read "Entre l'ordre et le chaos" article by Aline Mori
+            Read &quot;Entre l&apos;ordre et le chaos&quot; article by Aline Mori
           </Button>
         </div>
       </div>

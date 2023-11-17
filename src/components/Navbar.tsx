@@ -64,7 +64,7 @@ export default function Navbar() {
       <div className="h-16 bg-white shadow-lg flex justify-start md:justify-center items-center sticky top-0 z-10">
         {/* Web */}
         <div style={{ fontFamily: 'roboto' }} className="hidden md:block">
-          {navLinks.map(({ href, title }, i) => (
+          {navLinks.map(({ href, title }) => (
             <Link
               href={href}
               key={`nav-web-${title}`}

@@ -28,11 +28,11 @@ export default function Success() {
     <div>
       <Navbar />
       <div className="m-5 flex flex-col items-center">
-        <div className="font-black text-3xl flex">
+        <div className="font-black text-3xl flex flex-wrap">
           <h1>Order successfully &nbsp;</h1>
           <h1 className="text-[#536DFE]">completed</h1>
         </div>
-        <i className="text-gray-500 font-thin">If you have any questions, don't hesitate to contact me !</i>
+        <i className="text-gray-500 font-thin">If you have any questions, don&apos;t hesitate to contact me !</i>
         <Linksgroup title={false} />
         <Button
           variant="contained"
