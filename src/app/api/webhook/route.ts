@@ -36,8 +36,8 @@ export async function POST(req: NextRequest) {
 
       // Updating each products quantity stock
       products.forEach(async (prod) => {
-        if (prod.description && prod.description.split('/').length > 0) {
-          await incrementStock('paints', prod.description.split('/')[1]!, -1 * prod.quantity!);
+        if (prod.description && prod.description.split('/').length > 0 && prod.quantity) {
+          await incrementStock('paints', prod.description.split('/')[1]!, -prod.quantity);
         }
       });
 

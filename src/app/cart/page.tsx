@@ -83,11 +83,11 @@ export default function Cart() {
   }
 
   return (
-    <div>
+    <main className="h-full">
       <Navbar />
       <div className="flex flex-wrap">
         {/* left */}
-        <div className="flex-[0.7] bg-white m-5 p-2 rounded-lg">
+        <div className="flex-[0.7] bg-white m-5 p-2 rounded-lg max-h-[calc(100vh-130px)] min-w-[330px] overflow-y-scroll">
           <h1 className="font-extrabold text-lg">Articles</h1>
           <Divider className="mt-1 mb-1" />
           {storeContext.cart.length > 0 &&
@@ -117,7 +117,7 @@ export default function Cart() {
             ))}
         </div>
         {/* right */}
-        <div className="flex-[0.3] bg-white m-5 p-2 rounded-lg">
+        <div className="flex-[0.3] bg-white m-5 p-2 rounded-lg h-fit">
           <h1 className="font-extrabold text-lg">Total</h1>
           <Divider className="mt-1 mb-1" />
           <div className="flex justify-between">
@@ -138,6 +138,14 @@ export default function Cart() {
           </Button>
         </div>
       </div>
-    </div>
+      <Image
+        src="https://storage.googleapis.com/khindelvert-af786.appspot.com/uploads/2e8d4fc0-594b-4751-80da-29c9176ef0ed/MYSTERE-30x45-2014_1000.png"
+        alt="image"
+        loading="lazy"
+        width={300}
+        height={400}
+        className="absolute bottom-0 right-0 z-[-10] w-full mix-blend-darken opacity-10 blur-md"
+      />
+    </main>
   );
 }

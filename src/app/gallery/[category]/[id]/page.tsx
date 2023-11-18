@@ -1,6 +1,7 @@
 'use client';
 import { Comment, Home } from '@mui/icons-material';
 import { Breadcrumbs, Button, IconButton } from '@mui/material';
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -97,6 +98,14 @@ export default function PaintDetail({ params }: { params: { id: string } }) {
           </div>
         </div>
       </div>
+      <Image
+        src={image.url}
+        alt="image"
+        loading="lazy"
+        width={image.width * 100}
+        height={image.height * 100}
+        className="absolute bottom-0 right-0 z-[-10] w-full mix-blend-darken opacity-10 blur-sm"
+      />
     </>
   );
 }

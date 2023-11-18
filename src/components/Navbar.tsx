@@ -60,8 +60,8 @@ export default function Navbar() {
   );
 
   return (
-    <>
-      <div className="h-16 bg-white shadow-lg flex justify-start md:justify-center items-center sticky top-0 z-10">
+    <header className="sticky top-0 z-10">
+      <div className="h-16 bg-white shadow-lg flex justify-start md:justify-center items-center">
         {/* Web */}
         <div style={{ fontFamily: 'roboto' }} className="hidden md:block">
           {navLinks.map(({ href, title }) => (
@@ -96,6 +96,6 @@ export default function Navbar() {
           {list('left')}
         </Drawer>
       </React.Fragment>
-    </>
+    </header>
   );
 }

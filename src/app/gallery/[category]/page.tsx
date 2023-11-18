@@ -2,6 +2,7 @@
 import { Home } from '@mui/icons-material';
 import { Breadcrumbs, IconButton, ImageList, ImageListItem, Skeleton } from '@mui/material';
 import { DocumentData } from 'firebase/firestore';
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
@@ -41,7 +42,14 @@ export default function Category({ params }: { params: { category: string } }) {
           {images.map((item) => (
             <ImageListItem key={item.url}>
               <Link href={`/gallery/${params.category}/${item.id}`}>
-                <img src={item.url} alt={item.id} loading="lazy" />
+                <Image
+                  src={item.url}
+                  alt={item.id}
+                  loading="lazy"
+                  width={item.width * 100}
+                  height={item.height * 100}
+                  className="shadow-lg border-gray-700 border-[1px] border-opacity-40"
+                />
               </Link>
             </ImageListItem>
           ))}

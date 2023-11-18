@@ -1,5 +1,6 @@
 'use client';
 import { Avatar, Button } from '@mui/material';
+import Image from 'next/image';
 import React from 'react';
 
 import Linksgroup from '@/components/Linksgroup';
@@ -136,6 +137,14 @@ export default function Profile() {
           ))}
         </div>
       </div>
+      <Image
+        src="https://storage.googleapis.com/khindelvert-af786.appspot.com/uploads/44039628-4ba4-4966-8a08-fcd42a61de18/27-Les-poules-et-le-coq-56x76-2008_1000.png"
+        alt="image"
+        loading="lazy"
+        width={560}
+        height={760}
+        className="absolute bottom-0 right-0 z-[-10] w-full mix-blend-darken opacity-20 blur-sm"
+      />
     </main>
   );
 }

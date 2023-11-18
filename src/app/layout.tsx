@@ -18,7 +18,8 @@ export const metadata: Metadata = {
     title: 'Khindelvert Em | Official Website',
     description: 'Khindelvert Em, Painter & Lithograph artist',
     type: 'website',
-    images: 'https://payload.cargocollective.com/1/19/621815/10024475/03-Femme-Girafe-60x80-2009_587.jpg',
+    images:
+      'https://storage.googleapis.com/khindelvert-af786.appspot.com/uploads/0038ab85-af9d-4067-b597-42deadcf6e93/Image44-copie_1000.png',
   },
 };
 

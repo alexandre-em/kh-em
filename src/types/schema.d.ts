@@ -15,8 +15,8 @@ type PaintType = {
   year: number;
   category: string;
   url: string;
-  width: string;
-  height: string;
+  width: number;
+  height: number;
   price: number; // Euro
   stock: number; // available quantity
   comment: Comment[];
