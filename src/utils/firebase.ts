@@ -147,7 +147,6 @@ export async function uploadFile(filename: string, fileBuffer: Blob | ArrayBuffe
   }
 
   const result = `https://storage.googleapis.com/${storageRef.bucket}/${storageRef.fullPath}`;
-  console.log('uploading result', result);
 
   return { result, error };
 }

@@ -24,7 +24,6 @@ export default function Dashboard() {
             url: resUploadImage.result,
           });
 
-          console.log('res data', res);
           setIsLoading(false);
           if (!res.error) {
             setIsUploadSuccess('success');

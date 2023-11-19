@@ -46,7 +46,6 @@ export default function Cart() {
         { cart: storeContext!.cart },
         { headers: { 'Content-Type': 'application/json' } }
       );
-      console.log('session post', session);
       const stripeError = stripe?.redirectToCheckout({ sessionId: session.data.sessionId });
 
       if (stripeError) {

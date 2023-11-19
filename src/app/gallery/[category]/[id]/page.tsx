@@ -64,9 +64,15 @@ export default function PaintDetail({ params }: { params: { id: string } }) {
           {image.title}
         </Link>
       </Breadcrumbs>
-      <div className="flex justify-center">
-        <div className="flex flex-wrap sm:justify-between justify-center bg-white rounded-xl max-w-4xl">
-          <img alt="image" src={image.url} className="w-8/12 h-fit max-w-xl min-w-[300px] sm:rounded-xl rounded-none" />
+      <div className="flex justify-center mt-5">
+        <div className="flex flex-wrap sm:justify-between justify-center bg-white rounded-xl max-w-4xl shadow-2xl">
+          <Image
+            alt="image"
+            width={image.width * 100}
+            height={image.height * 100}
+            src={image.url}
+            className="w-8/12 h-fit max-w-3xl min-w-[300px] sm:rounded-xl rounded-none"
+          />
           <div className="p-2 flex flex-col justify-between w-full sm:w-fit">
             <div className="">
               <h1 className="font-extrabold text-2xl">{image.title}</h1>

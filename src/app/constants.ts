@@ -5,6 +5,8 @@ export const images = [
     title: 'Poisson rouge',
     year: 2011,
     url: 'https://storage.googleapis.com/khindelvert-af786.appspot.com/uploads/0e6efc12-ac1e-407d-bd61-05ca55c22963/22-Poisson-rouge-57x77-2011_585.png',
+    width: 570,
+    height: 770,
   },
   {
     category: '0',
@@ -12,6 +14,8 @@ export const images = [
     title: "Poule d'eau",
     year: 2015,
     url: 'https://storage.googleapis.com/khindelvert-af786.appspot.com/uploads/66532fb0-0bfa-4940-bc50-e0390409bcd4/poule-d-eau-copie_1000.png',
+    width: 600,
+    height: 800,
   },
   {
     category: '3',
@@ -19,6 +23,8 @@ export const images = [
     title: 'Calao',
     year: 2016,
     url: 'https://storage.googleapis.com/khindelvert-af786.appspot.com/uploads/3c55a330-34c7-4a6c-aade-493acfa603d2/DSC00298_1000.png',
+    width: 300,
+    height: 400,
   },
   {
     category: '2',
@@ -26,6 +32,8 @@ export const images = [
     title: 'Sirène',
     year: 2014,
     url: 'https://storage.googleapis.com/khindelvert-af786.appspot.com/uploads/a25973b9-5ce7-48ad-aa47-d0c1425805f9/Sirene_591.png',
+    width: 300,
+    height: 400,
   },
   {
     category: '2',
@@ -33,6 +41,8 @@ export const images = [
     title: 'Métamorphose',
     year: 2006,
     url: 'https://storage.googleapis.com/khindelvert-af786.appspot.com/uploads/2d36c242-8ae1-4df3-b691-ab946d5e6c62/zMETAMORPHOSE-56x76-2007_931.png',
+    width: 560,
+    height: 760,
   },
   {
     category: '1',
@@ -40,6 +50,8 @@ export const images = [
     title: 'Les chevaux',
     year: 2010,
     url: 'https://storage.googleapis.com/khindelvert-af786.appspot.com/uploads/5c31d05b-2c21-462b-871b-4227d719bb03/01-Les-chevaux-116x89-2010_1000.png',
+    width: 1160,
+    height: 890,
   },
   {
     category: '1',
@@ -47,5 +59,7 @@ export const images = [
     title: 'Fleur Champiell',
     year: 2015,
     url: 'https://storage.googleapis.com/khindelvert-af786.appspot.com/uploads/f125a868-7431-4669-a8fa-6eef16de3b1e/15-Fleur-Champieil-46x55-2010_1000.png',
+    width: 550,
+    height: 460,
   },
 ];

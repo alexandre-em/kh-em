@@ -34,8 +34,8 @@ export default function Home() {
             src={images[i].url}
             alt="image"
             loading="lazy"
-            width={500}
-            height={650}
+            width={images[i].width}
+            height={images[i].height}
             className="shadow-2xl mb-5 max-w-[400px] min-w-[250px] border-gray-900 border-[2px] border-opacity-70"
           />
         </Link>
