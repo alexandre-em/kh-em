@@ -1,27 +1,25 @@
-'use client';
 import { Home } from '@mui/icons-material';
 import { Breadcrumbs, IconButton, ImageList, ImageListItem, Skeleton } from '@mui/material';
-import { DocumentData } from 'firebase/firestore';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { getDocumentByField } from '@/utils/firebase';
 
 import { categoryList } from '../constants';
 
-export default function Category({ params }: { params: { category: string } }) {
-  const [images, setImages] = useState<DocumentData[]>([]);
+export function generateStaticParams() {
+  return categoryList.map(({ path }) => ({
+    category: path,
+  }));
+}
 
-  useEffect(() => {
-    if (params !== null && params !== undefined) {
-      getDocumentByField('paints', 'category', params.category).then((res) => {
-        if (res.result) {
-          setImages(res.result.docs.map((v) => ({ ...v.data(), id: v.id })));
-        }
-      });
-    }
-  }, [params]);
+export default async function Category({ params }: { params: { category: string } }) {
+  const res = await getDocumentByField('paints', 'category', params.category);
+  let images: PaintType[] = [];
+  if (res.result) {
+    images = res.result.docs.map((v) => ({ ...v.data(), id: v.id })) as PaintType[];
+  }
 
   return (
     <>
@@ -45,7 +43,6 @@ export default function Category({ params }: { params: { category: string } }) {
                 <Image
                   src={item.url}
                   alt={item.id}
-                  loading="lazy"
                   width={item.width * 100}
                   height={item.height * 100}
                   className="shadow-lg border-gray-700 border-[1px] border-opacity-40"

@@ -78,8 +78,9 @@ export async function incrementStock(collection: string, id: string, quantity: n
 
   try {
     result = await updateDoc(doc(db, collection, id), {
-      stock: increment(-1 * quantity),
+      stock: increment(quantity),
     });
+    console.log('Doc stock incremented', id);
   } catch (e) {
     error = e;
   }
@@ -123,6 +124,29 @@ export async function getDocument(collection: string, id: string) {
 
   try {
     result = await getDoc(docRef);
+  } catch (e) {
+    error = e;
+  }
+
+  return { result, error };
+}
+
+/**
+ * @param collection {string} path/name of the collection
+ * @param key {string} field name of the query
+ * @param value {string} field value of the query
+ * @example const { result, error } = await getDocumentByField('users', 'name', 'Alex')
+ */
+export async function getAllDocument(collection: string) {
+  const docRef = collectionRef(db, collection);
+
+  const q = query(docRef);
+
+  let result = null;
+  let error = null;
+
+  try {
+    result = await getDocs(q);
   } catch (e) {
     error = e;
   }

@@ -30,21 +30,27 @@ export async function POST(req: NextRequest) {
   // Handle the event
   switch (event.type) {
     case 'invoice.payment_succeeded':
+      console.log('invoice payment succeeded');
       const checkoutSessionCompleted = event.data.object;
       // Then define and call a function to handle the event checkout.session.completed
       const products = checkoutSessionCompleted.lines.data;
-
       // Updating each products quantity stock
-      products.forEach(async (prod) => {
-        if (prod.description && prod.description.split('/').length > 0 && prod.quantity) {
-          await incrementStock('paints', prod.description.split('/')[1]!, -prod.quantity);
-        }
-      });
+      const promiseArray = products
+        .map((prod) => {
+          if (prod.description && prod.description.split('/').length > 0 && prod.quantity) {
+            return incrementStock('paints', prod.description.split('/')[1]!, -1 * prod.quantity);
+          }
 
+          return null;
+        })
+        .filter((p) => p !== null);
+
+      await Promise.allSettled(promiseArray);
       break;
     // ... handle other event types
     default:
       console.info(`Unhandled event type ${event.type}`);
+      return NextResponse.json({ error: `Webhook Error: Unhandled event type: ${event.type}` }, { status: 400 });
   }
 
   // Return a 200 response to acknowledge receipt of the event
