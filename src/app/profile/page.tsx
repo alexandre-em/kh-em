@@ -87,9 +87,9 @@ export default function Profile() {
           <Linksgroup />
         </div>
         <div className="flex flex-col md:w-1/2 w-fit md:m-0 m-2">
-          <b className="font-extrabold text-2xl">Khindelvert Em</b>
-          <i className="opacity-75 text-sm font-light mb-2">Artiste peintre-lithographe</i>
-          <p className="text-justify mb-2 opacity-90">
+          <h1 className="font-extrabold text-2xl text-gray-700">Khindelvert Em</h1>
+          <i className="opacity-75 text-sm text-gray-700 font-light mb-5">Artiste peintre-lithographe</i>
+          <p className="text-justify mb-2 text-gray-700 opacity-90">
             M. EM Khindelvert, peintre et lithographe Né au Cambodge en 1956, Em Khindelvert vit en France depuis 1973 de ce fait
             il se considère comme français d&apos;origine cambodgienne.
             <br />
@@ -127,8 +127,8 @@ export default function Profile() {
         </div>
       </div>
       <div className="p-5 font-bold text-2xl bg-gray-400 ">
-        <h1 className="text-gray-600">Biography</h1>
-        <div className="flex flex-col flex-wrap text-gray-600">
+        <b className="text-gray-600">Exposition</b>
+        <div className="flex flex-col flex-wrap text-gray-600 mt-5">
           {expositions.map(({ date, name }) => (
             <div className="flex flex-row flex-wrap text-sm" key={`${date}-${name}`}>
               <div className="flex-[0.25] font-medium">{date}</div>

@@ -35,7 +35,7 @@ export default async function PaintDetail({ params }: { params: { category: stri
             <Home />
           </IconButton>
           <Link href="/gallery" className="decoration-transparent text-gray-600 text-sm">
-            Gallery
+            Gallerie
           </Link>
           <Link href={`/gallery/${image.category}`} className="decoration-transparent text-gray-600 text-sm">
             {categoryList.find(({ path }) => path === image!.category)?.name}

@@ -28,7 +28,7 @@ export default async function Category({ params }: { params: { category: string 
           <Home />
         </IconButton>
         <Link href="/gallery" className="decoration-transparent text-gray-600 text-sm">
-          Gallery
+          Gallerie
         </Link>
         <Link href={`/gallery/${params.category}`} className="decoration-transparent text-gray-600 text-sm">
           {categoryList.find(({ path }) => path === params.category)?.name}

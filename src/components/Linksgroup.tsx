@@ -5,7 +5,7 @@ import React from 'react';
 export default function Linksgroup({ title = true }: { title?: boolean }) {
   return (
     <>
-      {title && <h1 className="flex justify-center font-black">Links</h1>}
+      {title && <h1 className="flex justify-center font-black">Liens</h1>}
       <div className="flex justify-center">
         <IconButton href="https://www.facebook.com/khindelvert">
           <Facebook />

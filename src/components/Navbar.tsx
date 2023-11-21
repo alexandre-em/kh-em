@@ -9,8 +9,8 @@ import { useStore } from '@/providers/useStore';
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 const navLinks = [
-  { href: '/', title: 'Home' },
-  { href: '/gallery', title: 'Gallery' },
+  { href: '/', title: 'Accueil' },
+  { href: '/gallery', title: 'Gallerie' },
   { href: '/profile', title: 'Profile' },
   { href: '/contact', title: 'Contact' },
 ];
@@ -44,7 +44,7 @@ export default function Navbar() {
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}>
-      <h1 className="font-black ml-3 mt-3 text-xl">Khindelvert Em</h1>
+      <span className="font-black ml-3 mt-3 text-xl">Khindelvert Em</span>
       <List>
         {navLinks.map(({ href, title }) => (
           <Link href={href} key={`nav-mob-${title}`}>

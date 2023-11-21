@@ -7,7 +7,7 @@ import React, { useCallback, useRef, useState } from 'react';
 import Linksgroup from '@/components/Linksgroup';
 import Navbar from '@/components/Navbar';
 
-export default function Success() {
+export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
   const [mailStatus, setMailStatus] = useState<'SUCCESS' | 'ERROR' | 'PENDING' | 'LOADING'>('PENDING');
 
@@ -31,19 +31,19 @@ export default function Success() {
   );
 
   return (
-    <div>
+    <main>
       <Navbar />
       <div className="m-5 flex flex-col items-center">
         <div className="font-black text-gray-800 text-3xl flex flex-wrap">
-          <h1>You can contact me&nbsp;</h1>
-          <h1 className="text-[#536DFE]">here</h1>
+          <span>You can contact me&nbsp;</span>
+          <span className="text-[#536DFE]">here</span>
         </div>
         <Linksgroup title={false} />
         <Divider className="w-[80%]" />
         <div className="font-black text-gray-800 text-2xl flex flex-wrap mt-3 mb-3">
-          <h1>You can also&nbsp;</h1>
-          <h1 className="text-[#536DFE]">join me&nbsp;</h1>
-          <h1>with this form</h1>
+          <span>You can also&nbsp;</span>
+          <span className="text-[#536DFE]">join me&nbsp;</span>
+          <span>with this form</span>
         </div>
         <form ref={formRef} className="bg-white m-3 p-5 rounded-2xl" onSubmit={handleSubmit}>
           {mailStatus === 'SUCCESS' && (
@@ -83,6 +83,6 @@ export default function Success() {
         height={760}
         className="absolute bottom-0 right-0 z-[-10] w-full mix-blend-darken opacity-[15%] blur-md"
       />
-    </div>
+    </main>
   );
 }

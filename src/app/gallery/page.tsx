@@ -11,7 +11,7 @@ function CategoryPreview({ category }: { category: (typeof categoryList)[0] }) {
       <div className="flex justify-between">
         <h2 className="font-bold text-gray-700 text-xl">{category.name}</h2>
         <Button>
-          <Link href={`/gallery/${category.path}`}>See more...</Link>
+          <Link href={`/gallery/${category.path}`}>Voir plus...</Link>
         </Button>
       </div>
       <ImageList sx={{ maxWidth: 700, width: '100%' }} cols={3} rowHeight={164}>
@@ -38,13 +38,14 @@ export default function Gallery() {
   return (
     <>
       <div>
-        <h1 className="font-black text-2xl text-gray-800">Gallery</h1>
+        <h1 className="font-black text-2xl text-gray-800">Gallerie</h1>
         <i className="font-thin text-sm text-gray-500">
-          Here is all of my works with their informations. If you are interested in buying one (or more) of them, please send me
-          an email with the(ir) link(s) to check their availabilities.
+          Vous trouverez ici mon travail avec leurs details sur la taille, prix, année et la quantité. Si vous êtes intéressé par
+          l&apos;achat d&apos;une ou de plusieurs de mes oeuvres, envoyer moi, s&apos;il vous plaît, un mail contenant les liens
+          des oeuvres, afin que je puisse vous confirmer la disponibilité des oeuvres.
         </i>
       </div>
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center mt-5">
         {categoryList.map((category) => (
           <CategoryPreview key={category.name} category={category} />
         ))}

@@ -2,11 +2,9 @@ type StatusType = 'pending' | 'cancelled' | 'done';
 
 type Comment = {
   id: string;
-  authorEmail: string;
   authorName: string;
   message: string;
   date: Date;
-  reply: Comment[];
 };
 
 type PaintType = {

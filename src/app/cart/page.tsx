@@ -70,10 +70,10 @@ export default function Cart() {
         <Navbar />
         <div className="m-5 flex flex-col items-center">
           <div className="font-black text-3xl flex flex-wrap">
-            <h1>Your cart is &nbsp;</h1>
-            <h1 className="text-[#536DFE]">empty</h1>
+            <span>Votre panier est&nbsp;</span>
+            <span className="text-[#536DFE]">vide</span>
           </div>
-          <i className="text-gray-500 font-thin">If you have any questions, don&apos;t hesitate to contact me !</i>
+          <i className="text-gray-500 font-thin">Si vous avez des questions, n&apos;hesitez pas à me contacter !</i>
           <Linksgroup title={false} />
           <Image priority src={EmptyCart} alt="img" className="w-8/12 max-w-sm min-w-[200px] mt-10" />
         </div>
@@ -117,20 +117,20 @@ export default function Cart() {
         </div>
         {/* right */}
         <div className="flex-[0.3] bg-white m-5 p-2 rounded-lg h-fit">
-          <h1 className="font-extrabold text-lg">Total</h1>
+          <h2 className="font-extrabold text-lg">Total</h2>
           <Divider className="mt-1 mb-1" />
           <div className="flex justify-between">
-            <h1 className="text-xs">Total HT</h1>
-            <h1 className="text-xs">{totalPrice * 0.8}€</h1>
+            <h3 className="text-xs">Total HT</h3>
+            <h3 className="text-xs">{totalPrice * 0.8}€</h3>
           </div>
           <div className="flex justify-between">
-            <h1 className="text-xs">TVA</h1>
-            <h1 className="text-xs">{totalPrice * 0.2}€</h1>
+            <h3 className="text-xs">TVA</h3>
+            <h3 className="text-xs">{totalPrice * 0.2}€</h3>
           </div>
           <Divider className="mt-1 mb-1" />
           <div className="flex justify-between">
-            <h1 className="text-sm font-bold">Total TTC</h1>
-            <h1 className="text-sm font-bold">{totalPrice}€</h1>
+            <h3 className="text-sm font-bold">Total TTC</h3>
+            <h3 className="text-sm font-bold">{totalPrice}€</h3>
           </div>
           <Button variant="contained" className="bg-[#2196f3] mt-3" onClick={handleCheckout}>
             Checkout

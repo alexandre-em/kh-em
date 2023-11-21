@@ -45,13 +45,13 @@ export default function Home() {
             {images[i].title}, {images[i].year}
           </i>
           <Link href="/" className="duration-200 font-medium text-zinc-950 hover:text-zinc-500" style={{ fontFamily: 'roboto' }}>
-            Home
+            Accueil
           </Link>
           <Link
             href="/gallery"
             className="duration-200 font-medium text-zinc-950 hover:text-zinc-500"
             style={{ fontFamily: 'roboto' }}>
-            Gallery
+            Gallerie
           </Link>
           <Link
             href="/profile"
@@ -82,7 +82,7 @@ export default function Home() {
         loading="lazy"
         width={500}
         height={650}
-        className="absolute bottom-0 right-0 z-[-10] w-full mix-blend-darken opacity-[15%] blur-sm"
+        className="absolute bottom-0 right-0 z-[-10] w-full mix-blend-darken opacity-[15%] blur-sm animate-kenburns-top"
       />
     </main>
   );
