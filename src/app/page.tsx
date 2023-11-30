@@ -36,7 +36,7 @@ export default function Home() {
             loading="lazy"
             width={images[i].width}
             height={images[i].height}
-            className="shadow-2xl mb-5 max-w-[400px] min-w-[250px] border-gray-900 border-[2px] border-opacity-70"
+            className="shadow-2xl mb-5 max-w-[400px] min-w-[250px] w-1/2 border-gray-900 border-[2px] border-opacity-70"
           />
         </Link>
         <div className="flex flex-col min-w-fit bg-white p-3 w-1/4 shadow-md mb-5">

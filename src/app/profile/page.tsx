@@ -1,5 +1,5 @@
 'use client';
-import { Avatar, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
 
@@ -79,10 +79,13 @@ export default function Profile() {
       <Navbar />
       <div className="flex flex-row flex-wrap mt-5 justify-evenly overflow-x-hidden">
         <div>
-          <Avatar
-            alt="Khindelvert Em"
-            src="https://payload.cargocollective.com/1/19/621815/10023275/16_idem_paris_EM_400.jpg"
-            className="w-[200px] h-[200px] sm:h-[300px] sm:w-[300px] mr-5 mb-5"
+          <Image
+            src="/EM.jpg"
+            alt="em"
+            loading="lazy"
+            width={400}
+            height={300}
+            className="w-[200px] h-[200px] object-cover sm:h-[300px] sm:w-[300px] mr-5 mb-5 rounded-full"
           />
           <Linksgroup />
         </div>
@@ -122,7 +125,7 @@ export default function Profile() {
             arrière-plans comiques naturellement puissants, la délicatesse dont sont capables les hommes, et du fragile.
           </p>
           <Button href="https://payload.cargocollective.com/1/19/621815/10023275/chaos_889.jpg">
-            Read &quot;Entre l&apos;ordre et le chaos&quot; article by Aline Mori
+            Lire &quot;Entre l&apos;ordre et le chaos&quot; écrit par Aline Mori
           </Button>
         </div>
       </div>
