@@ -17,23 +17,38 @@ type PaintType = {
   height: number;
   price: number; // Euro
   stock: number; // available quantity
-  comment: Comment[];
+  comment?: Comment[];
+};
+
+type FirebaseDate = {
+  nanoseconds: number;
+  seconds: number;
+};
+
+type UserAdress = {
+  city: string;
+  country: string;
+  line1: string;
+  line2: string | null;
+  postal_code: string;
+  state: string;
+};
+
+type UserDetail = {
+  name: string;
+  email: string;
+  address: UserAdress | null;
+  phone: string | null;
 };
 
 type TransactionType = {
   id: string;
-  Paints: PaintType[];
+  paints: PaintType[];
   total: number;
-  stripeId: string; // TODO: Replace with correct type
   status: StatusType;
-  userInfo: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    address: string;
-    country: string;
-    phone: string;
-  };
+  userInfo: UserDetail | null;
+  pdf?: string;
+  date: Date | FirebaseDate;
 };
 
 type EventType = {

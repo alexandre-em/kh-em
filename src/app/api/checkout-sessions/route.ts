@@ -2,6 +2,8 @@ import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
+import { addDataToDb } from '@/utils/firebase';
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   typescript: true,
   apiVersion: '2023-10-16',
@@ -41,6 +43,17 @@ export async function POST(req: NextRequest) {
       },
       locale: 'auto',
     });
+
+    const data = {
+      id: session.id,
+      status: 'pending',
+      total: cartArray.map((v) => v.item.price * v.quantity).reduce((prev, curr) => prev + curr, 0),
+      paints: cartArray.map((item: CartItemType) => item.item),
+      userInfo: null,
+      date: new Date(),
+    };
+
+    await addDataToDb('transactions', data);
 
     return NextResponse.json({ sessionId: session.id });
   } catch (err) {

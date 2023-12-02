@@ -1,12 +1,20 @@
 import {
+  DocumentData,
+  QueryDocumentSnapshot,
   collection as collectionRef,
   doc,
+  endBefore,
+  getCountFromServer,
   getDoc,
   getDocs,
   getFirestore,
   increment,
+  limit,
+  orderBy,
   query,
   setDoc,
+  startAfter,
+  startAt,
   updateDoc,
   where,
 } from 'firebase/firestore';
@@ -25,7 +33,7 @@ const db = getFirestore(firebase_app);
  */
 export async function addDataToDb(
   collection: string,
-  data: Record<string, string | number | Date | Comment | StatusType | PaintType[]>
+  data: Record<string, string | number | Date | Comment | StatusType | PaintType[] | null>
 ) {
   let result = null;
   let error = null;
@@ -52,13 +60,41 @@ export async function addDataToDb(
 export async function updateItemData(
   collection: string,
   id: string,
-  data: Record<string, string | number | Date | Comment | StatusType | PaintType[]>
+  data: Record<string, string | number | Date | Comment | StatusType | PaintType[] | UserAdress>
 ) {
   let result = null;
   let error = null;
 
   try {
     result = await updateDoc(doc(db, collection, id), data);
+  } catch (e) {
+    error = e;
+  }
+
+  return { result, error };
+}
+
+/**
+ * @param collection {string} path/name of the collection
+ * @param id {string} id of the new row
+ * @param data {any}
+ * @example const { result, error } = await addData('users', 'user-id', data)
+ */
+export async function updateItemDataQuery(
+  collection: string,
+  qu: { key: string; value: string },
+  data: Record<string, string | number | Date | Comment | StatusType | PaintType[] | UserDetail>
+) {
+  const docRef = collectionRef(db, collection);
+
+  const q = query(docRef, where(qu.key, '==', qu.value));
+
+  let result = null;
+  let error = null;
+
+  try {
+    const docs = await getDocs(q);
+    result = await updateDoc(doc(db, collection, docs.docs[0]!.id), data);
   } catch (e) {
     error = e;
   }
@@ -80,7 +116,8 @@ export async function incrementStock(collection: string, id: string, quantity: n
     result = await updateDoc(doc(db, collection, id), {
       stock: increment(quantity),
     });
-    console.log('Doc stock incremented', id);
+
+    console.log('Increment ', id, ' quantity', quantity);
   } catch (e) {
     error = e;
   }
@@ -137,10 +174,35 @@ export async function getDocument(collection: string, id: string) {
  * @param value {string} field value of the query
  * @example const { result, error } = await getDocumentByField('users', 'name', 'Alex')
  */
-export async function getAllDocument(collection: string) {
+export async function getAllDocument(
+  collection: string,
+  lim?: number,
+  cursor?: {
+    after?: QueryDocumentSnapshot<DocumentData, DocumentData>;
+    before?: QueryDocumentSnapshot<DocumentData, DocumentData>;
+  },
+  orderByQuery?: { value: string; order: 'asc' | 'desc' }
+) {
   const docRef = collectionRef(db, collection);
+  let totalDoc;
 
-  const q = query(docRef);
+  const queryArgs = [];
+
+  if (orderByQuery?.value) queryArgs.push(orderBy(orderByQuery.value, orderByQuery.order));
+  if (lim) {
+    queryArgs.push(limit(lim));
+    totalDoc = (await getCountFromServer(docRef)).data().count;
+  }
+  if (lim && cursor) {
+    if (cursor.after) {
+      queryArgs.push(startAfter(cursor.after));
+    }
+    if (cursor.before) {
+      queryArgs.push(endBefore(cursor.before));
+    }
+  }
+
+  const q = query(docRef, ...queryArgs);
 
   let result = null;
   let error = null;
@@ -151,7 +213,7 @@ export async function getAllDocument(collection: string) {
     error = e;
   }
 
-  return { result, error };
+  return { result, error, totalDoc };
 }
 
 /**

@@ -2,7 +2,7 @@ import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-import { incrementStock } from '@/utils/firebase';
+import { incrementStock, updateItemDataQuery } from '@/utils/firebase';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   typescript: true,
@@ -29,11 +29,22 @@ export async function POST(req: NextRequest) {
 
   // Handle the event
   switch (event.type) {
+    case 'checkout.session.completed':
+      console.log('checkout sessions completed');
+      const checkoutSessionCompleted = event.data.object;
+
+      const data = {
+        userInfo: checkoutSessionCompleted.customer_details! as UserDetail,
+        status: checkoutSessionCompleted.payment_status === 'unpaid' ? 'cancelled' : 'done',
+      };
+
+      await updateItemDataQuery('transactions', { key: 'id', value: checkoutSessionCompleted.id }, data);
+      break;
     case 'invoice.payment_succeeded':
       console.log('invoice payment succeeded');
-      const checkoutSessionCompleted = event.data.object;
+      const invoicePaymentSucceeded = event.data.object;
       // Then define and call a function to handle the event checkout.session.completed
-      const products = checkoutSessionCompleted.lines.data;
+      const products = invoicePaymentSucceeded.lines.data;
       // Updating each products quantity stock
       const promiseArray = products
         .map((prod) => {
@@ -47,9 +58,21 @@ export async function POST(req: NextRequest) {
 
       await Promise.allSettled(promiseArray);
       break;
+    case 'checkout.session.expired':
+      console.log('checkout sessions expired');
+      const checkoutSessionExpired = event.data.object;
+
+      await updateItemDataQuery(
+        'transactions',
+        { key: 'id', value: checkoutSessionExpired.id },
+        {
+          status: checkoutSessionExpired.payment_status === 'unpaid' ? 'cancelled' : 'done',
+        }
+      );
+      break;
     // ... handle other event types
     default:
-      console.info(`Unhandled event type ${event.type}`);
+      // console.info(`Unhandled event type ${event.type}`);
       return NextResponse.json({ error: `Webhook Error: Unhandled event type: ${event.type}` }, { status: 400 });
   }
 
