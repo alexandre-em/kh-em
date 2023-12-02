@@ -2,7 +2,7 @@ import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-import { incrementStock, updateItemDataQuery } from '@/utils/firebase';
+import { incrementStock, updateItemData } from '@/utils/firebase';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   typescript: true,
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
         status: checkoutSessionCompleted.payment_status === 'unpaid' ? 'cancelled' : 'done',
       };
 
-      await updateItemDataQuery('transactions', { key: 'id', value: checkoutSessionCompleted.id }, data);
+      await updateItemData('transactions', checkoutSessionCompleted.id, data);
       break;
     case 'invoice.payment_succeeded':
       console.log('invoice payment succeeded');
@@ -62,13 +62,9 @@ export async function POST(req: NextRequest) {
       console.log('checkout sessions expired');
       const checkoutSessionExpired = event.data.object;
 
-      await updateItemDataQuery(
-        'transactions',
-        { key: 'id', value: checkoutSessionExpired.id },
-        {
-          status: checkoutSessionExpired.payment_status === 'unpaid' ? 'cancelled' : 'done',
-        }
-      );
+      await updateItemData('transactions', checkoutSessionExpired.id, {
+        status: checkoutSessionExpired.payment_status === 'unpaid' ? 'cancelled' : 'done',
+      });
       break;
     // ... handle other event types
     default:

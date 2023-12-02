@@ -38,7 +38,7 @@ export async function addDataToDb(
   let error = null;
 
   try {
-    const id = uuidv4();
+    const id = (data.id as string) || uuidv4();
 
     result = await setDoc(doc(db, collection, id), data, {
       merge: true,
@@ -59,7 +59,7 @@ export async function addDataToDb(
 export async function updateItemData(
   collection: string,
   id: string,
-  data: Record<string, string | number | Date | Comment | StatusType | PaintType[] | UserAdress>
+  data: Record<string, string | number | Date | Comment | StatusType | PaintType[] | UserDetail>
 ) {
   let result = null;
   let error = null;

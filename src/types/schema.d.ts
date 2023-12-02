@@ -51,13 +51,12 @@ type TransactionType = {
   date: Date | FirebaseDate;
 };
 
-type EventType = {
+type NewsType = {
   id: string;
   title: string;
   date: Date;
   location?: string;
-  description?: string;
-  link?: string;
+  message?: string;
 };
 
 type DataPayload = Record<string, string | number | Date | Comment | StatusType | PaintType[]>;

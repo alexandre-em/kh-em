@@ -69,7 +69,7 @@ export default function Contact() {
             maxRows={10}
             placeholder="You can write your message here..."
           />
-          <Button variant="contained" className="bg-[#2196f3] mt-3" type="submit" disabled={mailStatus === 'LOADING'}>
+          <Button variant="contained" className="bg-[#2196f3] mt-5" type="submit" disabled={mailStatus === 'LOADING'}>
             {mailStatus === 'LOADING' ? 'Loading...' : 'Send mail'}
             {mailStatus === 'LOADING' && <CircularProgress className="ml-3" size={15} />}
           </Button>

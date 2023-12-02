@@ -8,7 +8,7 @@ import Stripe from 'stripe';
 
 import Linksgroup from '@/components/Linksgroup';
 import Navbar from '@/components/Navbar';
-import { updateItemDataQuery } from '@/utils/firebase';
+import { updateItemData } from '@/utils/firebase';
 
 import OrderConfirmed from './order_confirmed.svg';
 
@@ -24,7 +24,7 @@ export default function Success() {
       axios.get(`/api/invoice?invoice_id=${session.data.invoice}`).then((invoice) => {
         setInvoice(invoice.data);
 
-        updateItemDataQuery('transactions', { key: 'id', value: sessionId! }, { pdf: invoice.data.hosted_invoice_url });
+        updateItemData('transactions', sessionId!, { pdf: invoice.data.hosted_invoice_url });
       });
     });
   }, [searchParams]);

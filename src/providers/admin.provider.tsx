@@ -20,7 +20,6 @@ export function Provider({ children }: { children: React.ReactNode }) {
     switch (type) {
       case 'LOGIN':
         if (payload.password === process.env.NEXT_PUBLIC_PASSWORD) {
-          console.log('logged in', payload.password);
           setIsConnected(true);
         }
         break;
