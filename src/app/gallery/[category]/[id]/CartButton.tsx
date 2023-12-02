@@ -2,7 +2,7 @@
 import { Button } from '@mui/material';
 import React from 'react';
 
-import { useStore } from '@/providers/useStore';
+import { useStore } from '@/providers/store.provider';
 
 export default function CartButton({ image }: { image: PaintType }) {
   const storeContext = useStore();

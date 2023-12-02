@@ -7,7 +7,7 @@ import React, { useCallback, useMemo } from 'react';
 
 import Linksgroup from '@/components/Linksgroup';
 import Navbar from '@/components/Navbar';
-import { useStore } from '@/providers/useStore';
+import { useStore } from '@/providers/store.provider';
 import getStripe from '@/utils/stripe';
 
 import EmptyCart from './empty_cart.svg';

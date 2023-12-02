@@ -4,7 +4,7 @@ import { Badge, Box, Button, Drawer, IconButton, List, ListItem, ListItemButton,
 import Link from 'next/link';
 import React, { useState } from 'react';
 
-import { useStore } from '@/providers/useStore';
+import { useStore } from '@/providers/store.provider';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
