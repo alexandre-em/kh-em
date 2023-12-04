@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import Stripe from 'stripe';
 
+import Footer from '@/components/Footer';
 import Linksgroup from '@/components/Linksgroup';
 import Navbar from '@/components/Navbar';
 import { updateItemData } from '@/utils/firebase';
@@ -30,9 +31,9 @@ export default function Success() {
   }, [searchParams]);
 
   return (
-    <div>
+    <>
       <Navbar />
-      <div className="m-5 flex flex-col items-center">
+      <div className="m-5 min-h-[calc(100dvh-162px)] flex flex-col items-center justify-center">
         <div className="font-black text-3xl flex flex-wrap">
           <span>Commande effectué avec&nbsp;</span>
           <span className="text-[#536DFE]">succès</span>
@@ -49,6 +50,7 @@ export default function Success() {
         </Button>
         <Image priority src={OrderConfirmed} alt="img" className="w-8/12 max-w-sm min-w-[200px] mt-10" />
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }

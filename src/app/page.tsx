@@ -1,45 +1,25 @@
-'use client';
-import { ChevronLeft, ChevronRight } from '@mui/icons-material';
-import { IconButton } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useCallback, useState } from 'react';
 
 import { images } from './constants';
 
 export default function Home() {
-  const [i, setI] = useState(0);
-
-  const handlePrev = useCallback(() => {
-    if (i <= 0) {
-      setI(images.length - 1);
-    } else {
-      setI((prev) => prev - 1);
-    }
-  }, [i]);
-
-  const handleNext = useCallback(() => {
-    if (i >= images.length - 1) {
-      setI(0);
-    } else {
-      setI((prev) => prev + 1);
-    }
-  }, [i]);
+  const i = Math.floor(Math.random() * images.length);
 
   return (
     <main className="flex h-full justify-center items-center">
       <div className="flex flex-row flex-wrap items-end justify-evenly w-3/5">
-        <Link href={`/gallery/${images[i].category}/${images[i].id}`}>
+        <Link href={`/gallery/${images[i].category}/${images[i].id}`} className="animate-slide-in-bck">
           <Image
             src={images[i].url}
             alt="image"
             loading="lazy"
             width={images[i].width}
             height={images[i].height}
-            className="shadow-2xl mb-5 max-w-[400px] min-w-[250px] w-1/2 border-gray-900 border-[2px] border-opacity-70"
+            className="shadow-2xl mb-5 max-w-[600px] max-h-[600px] min-w-[250px] w-[90%] border-gray-900 border-[2px] border-opacity-70"
           />
         </Link>
-        <div className="flex flex-col min-w-fit bg-white p-3 w-1/4 shadow-md mb-5">
+        <div className="flex flex-col min-w-fit bg-white p-3 w-1/4 shadow-md mb-5 animate-bounce-in-top">
           <b className="text-lg font-extrabold">Khindelvert Em</b>
           <i className="opacity-75 text-sm font-light mb-2">
             {images[i].title}, {images[i].year}
@@ -66,14 +46,7 @@ export default function Home() {
             Contact
           </Link>
 
-          <div className="flex flex-row mt-2 justify-between">
-            <IconButton onClick={handlePrev}>
-              <ChevronLeft />
-            </IconButton>
-            <IconButton onClick={handleNext}>
-              <ChevronRight />
-            </IconButton>
-          </div>
+          <div className="flex flex-row mt-2 justify-between"></div>
         </div>
       </div>
       <Image

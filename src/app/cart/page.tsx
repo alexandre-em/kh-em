@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useCallback, useMemo } from 'react';
 
+import Footer from '@/components/Footer';
 import Linksgroup from '@/components/Linksgroup';
 import Navbar from '@/components/Navbar';
 import { useStore } from '@/providers/store.provider';
@@ -66,9 +67,9 @@ export default function Cart() {
 
   if (!storeContext?.cart || storeContext.cart.length <= 0) {
     return (
-      <div>
+      <>
         <Navbar />
-        <div className="m-5 flex flex-col items-center">
+        <div className="m-5 min-h-[calc(100dvh-162px)] flex flex-col items-center justify-center">
           <div className="font-black text-3xl flex flex-wrap">
             <span>Votre panier est&nbsp;</span>
             <span className="text-[#536DFE]">vide</span>
@@ -77,16 +78,17 @@ export default function Cart() {
           <Linksgroup title={false} />
           <Image priority src={EmptyCart} alt="img" className="w-8/12 max-w-sm min-w-[200px] mt-10" />
         </div>
-      </div>
+        <Footer />
+      </>
     );
   }
 
   return (
-    <main className="h-full">
+    <main className="h-full overflow-y-auto">
       <Navbar />
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap justify-center">
         {/* left */}
-        <div className="flex-[0.7] bg-white m-5 p-2 rounded-lg max-h-[calc(100vh-130px)] min-w-[330px] overflow-y-scroll">
+        <div className="max-sm:flex-1 flex-[0.85] bg-white m-5 p-2 rounded-lg h-[calc(100vh-172px)] min-w-[250px] overflow-y-scroll">
           <h1 className="font-extrabold text-lg">Articles</h1>
           <Divider className="mt-1 mb-1" />
           {storeContext.cart.length > 0 &&
@@ -116,7 +118,7 @@ export default function Cart() {
             ))}
         </div>
         {/* right */}
-        <div className="flex-[0.3] bg-white m-5 p-2 rounded-lg h-fit">
+        <div className="max-sm:flex-1 flex-[0.2] min-w-[200px] max-w-xs bg-white m-5 p-2 rounded-lg h-fit">
           <h2 className="font-extrabold text-lg">Total</h2>
           <Divider className="mt-1 mb-1" />
           <div className="flex justify-between">
@@ -137,6 +139,7 @@ export default function Cart() {
           </Button>
         </div>
       </div>
+      <Footer />
       <Image
         src="https://storage.googleapis.com/khindelvert-af786.appspot.com/uploads/2e8d4fc0-594b-4751-80da-29c9176ef0ed/MYSTERE-30x45-2014_1000.png"
         alt="image"

@@ -3,6 +3,7 @@ import { Button } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
 
+import Footer from '@/components/Footer';
 import Linksgroup from '@/components/Linksgroup';
 import Navbar from '@/components/Navbar';
 
@@ -140,6 +141,7 @@ export default function Profile() {
           ))}
         </div>
       </div>
+      <Footer style={{ backgroundColor: '#6b7280', color: 'white' }} />
       <Image
         src="https://storage.googleapis.com/khindelvert-af786.appspot.com/uploads/44039628-4ba4-4966-8a08-fcd42a61de18/27-Les-poules-et-le-coq-56x76-2008_1000.png"
         alt="image"
